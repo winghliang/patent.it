@@ -1,0 +1,3 @@
+inventionApp.controller('ProsecutorLoginRegController', function(){
+    
+})

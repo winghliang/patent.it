@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="inventionApp">
+
+<head>
+	<title>Patent.It</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen,projection">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+</head>
+
+<body>
+
+    <nav class="white" role="navigation">
+        <div class="nav-wrapper container">
+        <a id="logo-container" href="#/" class="brand-logo">Patent.It</a>
+        <ul class="right">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        </div>
+    </nav> <!-- End of nav -->
+
+
+    <div ng-view = ""></div>
+
+    <!-- Scripts -->
+
+        <!-- Jquery and Materialize -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/js/materialize/materialize.min.js"></script>
+
+        <!--angular & angular routes-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+
+        <!-- angular moment -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+
+        <!-- controllers and factories -->
+    <script type="text/javascript" src="/js/factories/InventorFactory.js"></script>
+    <script type="text/javascript" src="/js/controllers/InventorLoginRegController.js"></script>
+    <script type="text/javascript" src="/js/controllers/ProsecutorLoginRegController.js"></script>
+
+        <!-- define routes -->
+    <script type="text/javascript" src="./js/config/routes.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Patent.It - Inventor Login or Registration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen,projection">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+</head>
+
+<body>
+
+    <nav class="white" role="navigation">
+        <div class="nav-wrapper container">
+        <a id="logo-container" href="/" class="brand-logo">Patent.It</a>
+        <ul class="right">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        </div>
+    </nav> <!-- End of nav -->
+
+
+    <div class="teal lighten-4">
+
+        <div class="container">
+
+            <div class="row center section">
+                <h4 class="blue-text text-darken-4">Welcome.  Please login or register.</h4>
+            </div>
+
+            <div class="row">
+
+                <div class="col s5">
+                    <div class="card-panel">
+                        <h5>Login as Inventor</h5>
+                        <hr>
+                        <form ng-submit="inventorLogin()">
+                            <label>Email: <input type="email" ng-model="returningInventor.email"></label><br>
+                            <label>Password: <input type="password" ng-model="returningInventor.password"></label>
+                            <input class="waves-effect waves-light btn" type="submit" value="Login">
+                        </form>
+                    </div>
+                </div> <!-- end of login -->
+
+
+                <div class="col s5 offset-s2">
+                    <div class="card-panel">            
+                        <h5>Register as Inventor</h5>
+                        <hr>
+                        <form ng-submit-"inventorReg()">
+                            <label>First Name: <input type="email" ng-model="inventorReg.first_name"></label><br>
+                            <label>Last Name: <input type="password" ng-model="inventorReg.last_name"></label><br>
+                            <label>Email: <input type="email" ng-model="inventorReg.email"></label><br>
+                            <label>Password: <input type="password" ng-model="inventorReg.password"></label><br>
+                            <label>Confirm Password: <input type="password" ng-model="inventorReg.confirmpassword"></label>
+                            <input class="waves-effect waves-light btn" type="submit" value="Register">
+                        </form>
+                    </div>
+                </div> <!-- end of register -->
+
+            </div> <!-- end of row -->
+
+        </div> <!-- end of container -->
+
+    </div>
+
+    <!-- Scripts -->
+
+        <!-- Jquery and Materialize -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/js/materialize/materialize.min.js"></script>
+
+</body>
+</html>

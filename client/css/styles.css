@@ -1,0 +1,32 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+
+.nav-wrapper a, #logo-container {
+	color: black;
+}
+
+#index-banner{
+	background-image: url("/images/idea2.jpg");
+}
+
+#inventor_button, #prosecutor_button {
+	width: 200px;
+	margin: 0px 30px;
+}
+
+
+/*#inventor_panel {
+	width: 50%;
+	background-color: lightblue;
+	float: left;
+}
+
+#prosecutor_panel {
+	width: 50%;
+	background-color: lightgreen;
+	float: left;
+}
+*/
