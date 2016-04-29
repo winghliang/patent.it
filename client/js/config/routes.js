@@ -2,7 +2,7 @@ inventionApp.config(function($routeProvider){
 
     $routeProvider
         .when('/', {
-            templateUrl: 'partials/home.html'
+            templateUrl: 'partials/inventor_dash.html'
         })
         .when('/inventor', {
             templateUrl: 'partials/inventor.html'

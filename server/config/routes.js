@@ -6,17 +6,25 @@ module.exports = function(app, passport){
 		res.render('inventor_loginReg', {message: req.flash('loginMessage')});
 	})
 
+	app.get('/inventor_home', function(req, res){
+		res.render('inventor_home');
+	})
+
 	app.post('/inventorLogin', passport.authenticate('inventor-local-login', {
-		successRedirect : '/', 
+		successRedirect : '/inventor_home', 
         failureRedirect : '/inventor', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages		
 	})) 
 
 	app.post('/inventorReg', passport.authenticate('inventor-local-reg', {
-		successRedirect : '/', 
+		successRedirect : '/inventor_home', 
         failureRedirect : '/inventor', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages		
-	})) 
+	}))
+
+	app.get('/inventors', function(req, res){
+		inventors.index(req, res);
+	}) 
 
 	// app.get('/customers', function(req, res){
 	// 	customers.index(req, res);
