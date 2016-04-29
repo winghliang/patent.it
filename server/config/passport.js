@@ -3,18 +3,18 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var mongoose = require('mongoose');
 
-
 var Inventor = require('../models/Inventor');
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
 
-    // required for persistent login sessions
-    // passport needs ability to serialize and unserialize users out of session
+    // For persistent login sessions
+    // serialize and unserialize users out of session
 
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
         done(null, user.id);
+        // console.log('session:', req.session)
     });
 
     // used to deserialize the user
@@ -29,7 +29,7 @@ module.exports = function(passport) {
         passwordField : 'password',
         passReqToCallback : true // 
     },
-    function(req, email, password, done) {
+    function(req, email, password, done) { 
 
         // asynchronous
         // User.findOne wont fire unless data is sent back
@@ -68,6 +68,7 @@ module.exports = function(passport) {
                     // save the user
                     newInventor.save(function(err) {
                         console.log('adding inventor to database')
+                        console.log('done is:', done)
                         if (err)
                             throw err;
                         return done(null, newInventor);
@@ -108,6 +109,7 @@ module.exports = function(passport) {
             }
 
             // all is well, return successful user
+            console.log('all is well with login')
             return done(null, user);
         });
 
