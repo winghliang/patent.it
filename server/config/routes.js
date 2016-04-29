@@ -3,12 +3,18 @@ var inventors = require('../controllers/inventors.js');
 module.exports = function(app, passport){
 
 	app.get('/inventor', function(req, res){
-		res.render('inventor_loginReg');
+		res.render('inventor_loginReg', {message: req.flash('loginMessage')});
 	})
 
-	app.post('/inventorLogin', passport.authenticate('local-login', {
-		successRedirect : '#/', // redirect to the secure profile section
-        failureRedirect : '#/', // redirect back to the signup page if there is an error
+	app.post('/inventorLogin', passport.authenticate('inventor-local-login', {
+		successRedirect : '/', 
+        failureRedirect : '/inventor', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages		
+	})) 
+
+	app.post('/inventorReg', passport.authenticate('inventor-local-reg', {
+		successRedirect : '/', 
+        failureRedirect : '/inventor', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages		
 	})) 
 

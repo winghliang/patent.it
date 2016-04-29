@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Patent.It - Inventor Login or Registration</title>
+    <title>Patent.It - Inventor Login or Registration</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 
@@ -34,15 +34,25 @@
                 <h4 class="blue-text text-darken-4">Welcome.  Please login or register.</h4>
             </div>
 
+            <% if (message.length > 0) { %>
+            <div class="row">
+                <div class="col s6 offset-s3">
+                    <div class="card-panel red lighten-4">
+                        <p class="red-text center"><%= message %></p>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+
             <div class="row">
 
                 <div class="col s5">
                     <div class="card-panel">
                         <h5>Login as Inventor</h5>
                         <hr>
-                        <form ng-submit="inventorLogin()">
-                            <label>Email: <input type="email" ng-model="returningInventor.email"></label><br>
-                            <label>Password: <input type="password" ng-model="returningInventor.password"></label>
+                        <form action="/inventorLogin" method="POST">
+                            <label>Email: <input type="email" name="email"></label><br>
+                            <label>Password: <input type="password" name="password"></label>
                             <input class="waves-effect waves-light btn" type="submit" value="Login">
                         </form>
                     </div>
@@ -53,12 +63,12 @@
                     <div class="card-panel">            
                         <h5>Register as Inventor</h5>
                         <hr>
-                        <form ng-submit-"inventorReg()">
-                            <label>First Name: <input type="email" ng-model="inventorReg.first_name"></label><br>
-                            <label>Last Name: <input type="password" ng-model="inventorReg.last_name"></label><br>
-                            <label>Email: <input type="email" ng-model="inventorReg.email"></label><br>
-                            <label>Password: <input type="password" ng-model="inventorReg.password"></label><br>
-                            <label>Confirm Password: <input type="password" ng-model="inventorReg.confirmpassword"></label>
+                        <form action="/inventorReg" method="POST">
+                            <label>First Name: <input type="text" name="first_name"></label><br>
+                            <label>Last Name: <input type="text" name="last_name"></label><br>
+                            <label>Email: <input type="email" name="email"></label><br>
+                            <label>Password: <input type="password" name="password"></label><br>
+                            <label>Confirm Password: <input type="password" name="confirm_password"></label>
                             <input class="waves-effect waves-light btn" type="submit" value="Register">
                         </form>
                     </div>
