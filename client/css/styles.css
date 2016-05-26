@@ -18,15 +18,92 @@
 }
 
 
-/*#inventor_panel {
-	width: 50%;
-	background-color: lightblue;
-	float: left;
+#sidebar-wrapper {
+	background-color: black;
 }
 
-#prosecutor_panel {
-	width: 50%;
-	background-color: lightgreen;
-	float: left;
+.nav_row {
+	height: 60px;
+	line-height: 60px;
 }
-*/
+
+.side_nav {
+	border-right: solid 1px black;
+	padding: 10px 0px 50px 0px;
+}
+
+.side_nav li {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.body-separator {
+	height: 15px;
+	background: linear-gradient(lightgrey, white);
+}
+
+.sidenav_active {
+	background-color: gray;
+	color: white;
+}
+
+.sidenav_active a {
+	color: white;
+}
+
+.main_content {
+	margin-top: 10px;
+}
+
+.main_panel {
+	margin: 0px 100px;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+.main_post_panel {
+	padding: 20px 50px;
+}
+
+@media screen and (max-width: 768px){
+	.main_panel {
+		margin: 0;
+	}
+
+	.main_content {
+		margin-top: 0;
+	}
+
+	.side_nav {
+		border-right: none;
+		padding: 0px;
+	}
+
+	#new_post_panel {
+		padding: 15px;
+	}
+}
+
+#logo {
+	text-decoration: none;
+	color: black;
+}
+
+.italic_time {
+	font-style: italic;
+}
+
+.success-alert {
+	padding: 10px 0px;
+	color: green;
+}
+
+.bids_text {
+	font-weight: bold;
+	color: red;
+}

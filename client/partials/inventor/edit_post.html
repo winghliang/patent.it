@@ -1,0 +1,67 @@
+<div ng-controller="EditPostController">
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-sm-2 side_nav">
+                <ul class="list-unstyled">
+                    <li><a href="#/">Summary</a></li>
+                    <li class="sidenav_active"><a href="#/pending_posts">Pending Posts</a></li>
+                    <li><a href="#/">Accepted Posts</a></li>
+                    <li><a href="#/">Completed Posts</a></li>
+                    <li><a href="#/new_post">Post New Invention</a></li>
+                </ul>
+            </div>
+
+            <div class="col-sm-10 main_content">
+                <div class="panel panel-primary main_panel">
+                    <div class="panel-heading"><h4>Edit Post</h4></div>
+                    <div class="panel-body" class="main_post_panel">
+                        <form role="form" ng-submit="update_post()">
+                            <div class="form-group">
+                                <label for="title"><h5>Please give a short title for your invention.  Example: Car Engine Diagnosis Device<h5></label>
+                                <input type="text" class="form-control" id="title" ng-model="invention.title">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Brief description of your invention.  Only provide enough information for attorney/agent to place a bid.  DO NOT reveal any confidential information.  Example of appropriate description:  "Method and device for telling the user whether anything is wrong with his/her car." </label>
+                                <textarea class="form-control" rows="5" id="pwd" ng-model="invention.description"></textarea>
+                            </div>
+
+                            <h5><u>Technology Areas:</u></h5>
+
+                            <ul style="list-style-type:none">
+                                <li ng-repeat="technology in invention.technologies">{{technology}}</li>                                
+                            </ul>
+
+                            <div class="text-right">
+                                <input type="submit" class="btn btn-success" value="Submit">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <p>Change your mind? Click button below to delete (Warning: This action cannot be undone!)</p>
+                    <button class="btn btn-danger" ng-click="delete_post()">Delete Post</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+<!-- 	<div class="container">
+
+		<div class="row center section">
+			<h4 class="blue-text text-darken-4">Now in inventor dash.</h4>
+		</div>
+
+		<ul>
+			<li ng-repeat="inventor in inventors">{{ inventor.email }}</li>
+		</ul> -->
+<!-- 
+	</div> end of container -->
+
+</div>

@@ -1,0 +1,89 @@
+<div ng-controller="InventorsController">
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Side Nav -->
+            <div class="col-sm-2 side_nav">
+                <ul class="list-unstyled">
+                    <li class="sidenav_active">Summary</li>
+                    <li><a href="#/pending_posts">Pending Posts</a></li>
+                    <li><a href="#/">Accepted Posts</a></li>
+                    <li><a href="#/">Completed Posts</a></li>
+                    <li><a href="#/new_post">Post New Invention</a></li>
+                </ul>
+            </div> <!-- End of side nav -->
+
+            <!-- Main Summary Section -->
+            <div class="col-sm-10 main_content">
+
+                <div class="alert alert-success text-center main_panel" ng-show="message.length > 0">
+                    <strong>{{message}}</strong>
+                </div>
+
+                <!-- awaiting bids or acceptance of bids panel --> 
+                <div class="panel panel-danger main_panel">
+                    <div class="panel-heading text-center"><h4>Posts Awaiting Bids Or Acceptance of Bids</h4></div>
+                    <div class="panel-body" class="main_post_panel">
+                        <p ng-if="open_posts.length == 0">No posts awaiting bids or acceptance.</p>
+                        <div class="preview" ng-repeat="post in open_posts | orderBy: '-created_date' | limitTo: open_preview_limit">
+                            <h4><a href="#/post/{{post._id}}">{{ post.title}}</a></h4>
+                            <p>{{post.description}}</p>
+                            <p class="bids_text" ="bids_text">Bids: {{ post.bids.length }}</p>
+                            <p class="italic_time">Created: <time am-time-ago="post.created_date"></p>
+                            <hr>
+                        </div>
+                        <p class="text-center">
+                            <span ng-hide="open_preview_limit >= open_posts.length"><a ng-click="open_preview_limit = open_preview_limit + 2">Show more...</a></span> 
+                            <span ng-hide="open_preview_limit >= open_posts.length || open_preview_limit <=0"> | </span> 
+                            <span ng-hide="open_preview_limit <= 0 || open_posts.length == 0"> <a ng-click="open_preview_limit = open_preview_limit - 2">Show less...</a></span>
+                        </p>
+                    </div>
+                </div> <!-- end of awaiting bids or acceptance of bids panel --> 
+
+
+                <!-- accepted bids opanel --> 
+                <div class="panel panel-info main_panel">
+                    <div class="panel-heading text-center"><h4>Posts With Accepted Bids</h4></div>
+                    <div class="panel-body" class="main_post_panel">
+                        <p ng-if="accepted_posts.length == 0">No posts with accepted bids.</p>
+                        <div class="preview" ng-repeat="post in accepted_posts | orderBy: '-created_date' | limitTo: accepted_preview_limit">
+                            <h4><a href="#/post/{{post._id}}">{{ post.title}}</a></h4>
+                            <p>{{post.description}}</p>
+                            <p class="italic_time">Created: <time am-time-ago="post.created_date"></p>
+                            <hr>
+                        </div>
+                        <p class="text-center">
+                            <span ng-hide="accepted_preview_limit >= accepted_posts.length"><a ng-click="accepted_preview_limit = accepted_preview_limit + 2">Show more...</a></span> 
+                            <span ng-hide="accepted_preview_limit >= accepted_posts.length || accepted_preview_limit <=0"> | </span> 
+                            <span ng-hide="accepted_preview_limit <= 0 || accepted_posts.length == 0"> <a ng-click="accepted_preview_limit = accepted_preview_limit - 2">Show less...</a></span>
+                        </p>
+                    </div>
+                </div> <!-- end of accepted bids panel --> 
+
+                <!-- completed posts panel --> 
+                <div class="panel panel-success main_panel">
+                    <div class="panel-heading text-center"><h4>Completed Posts</h4></div>
+                    <div class="panel-body" class="main_post_panel">
+                        <p ng-if="completed_posts.length == 0">No completed posts.</p>
+                        <div class="preview" ng-repeat="post in completed_posts | orderBy: '-created_date' | limitTo: completed_preview_limit">
+                            <h4><u>{{ post.title}}</u></h4>
+                            <p>{{post.description}}</p>
+                            <p class="italic_time">Created: <time am-time-ago="post.created_date"></p>
+                            <hr>
+                        </div>
+                        <p class="text-center">
+                            <span ng-hide="completed_preview_limit >= completed_posts.length"><a ng-click="completed_preview_limit = completed_preview_limit + 2">Show more...</a></span> 
+                            <span ng-hide="completed_preview_limit >= completed_posts.length || completed_preview_limit <=0"> | </span> 
+                            <span ng-hide="completed_preview_limit <= 0 || completed_posts.length == 0"> <a ng-click="completed_preview_limit = completed_preview_limit - 2">Show less...</a></span>
+                        </p>
+                    </div>
+                </div> <!-- end of completed posts panel --> 
+
+            </div> <!-- End of main summary section -->
+
+
+        </div>
+    </div>
+
+</div>

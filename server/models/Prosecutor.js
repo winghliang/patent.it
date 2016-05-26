@@ -9,15 +9,15 @@ var ProsecutorSchema = mongoose.Schema({
 	first_name: {type: String, required: true},
 	last_name: {type: String, required: true},
 	date_joined: {type: Date, default: new Date},
+	user_type: {type: String, default: 'prosecutor'},
 	// licensed_states: [{type: String, required: true}],
 	// licensed_since: {type: Number, required: true},
 	// rating: Number,
 	// technologies: [{type: Schema.Types.ObjectId, ref: 'Technology'}],
-	// bids: [{type: Schema.Types.ObjectId, ref: 'Project'}],
+	bids: [{type: Schema.Types.ObjectId, ref: 'Bid'}]
 	// projects: [{type: Schema.Types.ObjectId, ref: 'Project'}] 
 });
 
-// methods
 // generating a hash
 ProsecutorSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);

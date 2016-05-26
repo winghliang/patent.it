@@ -2,51 +2,72 @@
 <html lang="en" ng-app="inventionApp">
 
 <head>
-	<title>Patent.It</title>
+    <title>Patent.It - Prosecutor</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen,projection">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+
 
 </head>
 
 <body>
 
-    <nav class="white" role="navigation">
-        <div class="nav-wrapper container">
-        <a id="logo-container" href="/" class="brand-logo">Patent.It</a>
-        <ul class="right">
-            <li class="black-text">Welcome <%= user.first_name %> </li>
-            <li><a class="red-text" href="#">Logout</a></li>
-        </ul>
+    <div class="container">
+        <div class="row nav_row">
+            <div class="col-sm-2">
+                <h2><a href="#/" id="logo">Patent.It</a></h2>
+            </div>
+            <div class="col-sm-10">
+                <div class="text-right">
+                    <ul class="list-inline">
+                        <li>Welcome <%= user.first_name %></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </nav> <!-- End of nav -->
+    </div>
+
+    <div class="container-fluid">
+        <div class="row body-separator">
+            <div class="col-xs-12"></div>
+        </div>
+    </div>
 
     <div ng-view = ""></div>
 
     <!-- Scripts -->
-
-        <!-- Jquery and Materialize -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="/js/materialize/materialize.min.js"></script>
 
         <!--angular & angular routes-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
 
         <!-- angular moment -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+    <script src="/js/node_modules/moment/moment.js"></script>
+    <script src="/js/node_modules/angular-moment/angular-moment.js"></script>
+
+    <!-- Angular module -->
+    <script type="text/javascript">
+        var inventionApp = angular.module('inventionApp', ['ngRoute', 'angularMoment']);
+
+        var global_messages = [];
+
+    </script>
+
 
         <!-- controllers and factories -->
     <script type="text/javascript" src="/js/factories/ProsecutorFactory.js"></script>
-    <script type="text/javascript" src="/js/controllers/ProsecutorsController.js"></script>
+    <script type="text/javascript" src="/js/controllers/prosecutor/ProsecutorsController.js"></script>
+    <script type="text/javascript" src="/js/controllers/prosecutor/BidOnPostController.js"></script>
+<!--     <script type="text/javascript" src="/js/controllers/NewPostController.js"></script>
+    <script type="text/javascript" src="/js/controllers/EditPostController.js"></script>
+    <script type="text/javascript" src="/js/controllers/PendingPostsController.js"></script> -->
 
         <!-- define routes -->
-    <script type="text/javascript" src="./js/config/routes.js"></script>
+    <script type="text/javascript" src="/js/config/ProsecutorRoutes.js"></script>
 
 </body>
 </html>

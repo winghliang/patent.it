@@ -6,4 +6,4 @@ var TechnologySchema = mongoose.Schema({
 	name: {type: String, required: true}
 });
 
-mongoose.model('Technology', TechnologySchema);
+mongoose.model('Tech_area', TechnologySchema);

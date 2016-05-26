@@ -9,10 +9,11 @@ var InventorSchema = mongoose.Schema({
 	first_name: {type: String, required: true},
 	last_name: {type: String, required: true},
 	date_joined: {type: Date, default: new Date},
-	// projects: [{type: Schema.Types.ObjectId, ref: 'Project'}	
+	user_type: {type: String, default: 'inventor'},
+	posts: [{type: Schema.Types.ObjectId, ref: 'Invention'}]	
 });
 
-// methods ======================
+// methods
 // generating a hash
 InventorSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);

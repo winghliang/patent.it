@@ -1,6 +1,11 @@
 var inventors = require('../controllers/inventors.js');
 
+var prosecutors = require('../controllers/prosecutors.js')
+
 module.exports = function(app, passport){
+
+
+	//Inventor login and registration 
 
 	app.get('/inventorLoginReg', function(req, res){
 		res.render('inventor_loginReg', {message: req.flash('loginMessage')});
@@ -13,58 +18,92 @@ module.exports = function(app, passport){
 
 	app.post('/inventorLogin', passport.authenticate('inventor-local-login', {
 		successRedirect : '/inventor_home', 
-        failureRedirect : '/inventorLoginReg', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages		
+        failureRedirect : '/inventorLoginReg', 
+        failureFlash : true 	
 	})) 
 
 	app.post('/inventorReg', passport.authenticate('inventor-local-reg', {
 		successRedirect : '/inventor_home', 
-        failureRedirect : '/inventor', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages		
+        failureRedirect : '/inventorLoginReg', 
+        failureFlash : true 		
 	}))
 
-	app.get('/inventors', function(req, res){
-		inventors.index(req, res);
+	app.get('/inventor', function(req, res){
+		inventors.get(req, res);
 	})
+
+	//Prosecutor login and registration
+	app.get('/prosecutor_home', isLoggedIn, function(req, res){
+		console.log('user is:', req.user)
+		res.render('prosecutor_home', { user: req.user });
+	})
+
+	app.post('/prosecutorLogin', passport.authenticate('prosecutor-local-login', {
+		successRedirect : '/prosecutor_home', 
+        failureRedirect : '/prosecutorLoginReg', 
+        failureFlash : true 	
+	})) 
+
+	app.post('/prosecutorReg', passport.authenticate('prosecutor-local-reg', {
+		successRedirect : '/prosecutor_home', 
+        failureRedirect : '/prosecutorLoginReg', 
+        failureFlash : true 		
+	}))
+
 
 	app.get('/prosecutorLoginReg', function(req, res){
 		res.render('prosecutor_loginReg', {message: req.flash('loginMessage')});
 	})
 
+	//checking whether user is logged in
 	function isLoggedIn(req, res, next) {
 	    // if user is authenticated in the session, proceed 
+	    console.log(req.isAuthenticated());
 	    if (req.isAuthenticated())
 	        return next();
-	    // if not, redirect them to the home page
+	    // if not, redirect to home page
+	    console.log('not authenticated in isLoggedIn')
 	    res.redirect('/');
 	} 
 
-	// app.get('/customers', function(req, res){
-	// 	customers.index(req, res);
-	// })
+	//Logging out
+	app.get('/logout', function(req, res){
+		req.logout();
+		res.redirect('/');
+	})
 
-	// app.post('/customers', function(req, res){
-	// 	customers.create(req, res);
-	// })
+	//Inventor routes
+	app.get('/tech_areas', function(req, res){
+		inventors.tech_areas(req, res);
+	})
 
-	// app.post('/customers/destroy', function(req, res){
-	// 	customers.destroy(req, res);
-	// })
+	app.post('/invention/create', function(req, res){
+		inventors.add_invention(req, res);
+	})
 
-	// app.get('/orders', function(req, res){
-	// 	orders.index(req, res);
-	// })
+	app.post('/post/delete/:id', function(req, res){		
+		inventors.delete_post(req, res);
+	})
 
-	// app.post('/orders', function(req, res){
-	// 	orders.create(req, res);
-	// })
+	app.post('/post/update/:id', function(req, res){		
+		inventors.update_post(req, res);
+	})
 
-	// app.get('/products', function(req, res){
-	// 	products.index(req, res);
-	// })
+	//Prosecutor routes
+	app.get('/inventions', function(req, res){
+		console.log("in prosecutor routes")
+		prosecutors.get_inventions(req, res);
+	})
 
-	// app.post('/products', function(req, res){
-	// 	products.create(req, res);
-	// })
+	app.post('/bid/:id', function(req, res){
+		prosecutors.place_bid(req, res);
+	})
+
+
+	//Routes used by both inventors and prosecutors
+	app.get('/post/:id', function(req, res){		
+		inventors.get_post(req, res);
+	})
+
 
 }
