@@ -10,12 +10,18 @@ inventionApp.config(function($routeProvider){
         .when('/pending_posts', {
             templateUrl: 'partials/inventor/pending_posts.html'
         })
+        .when('/accepted_posts', {
+            templateUrl: 'partials/inventor/accepted_posts.html'
+        })
         .when('/edit_post/:id', {
             templateUrl: 'partials/inventor/edit_post.html'
         })
         .when('/post/:id', {
             templateUrl: 'partials/inventor/view_post.html'
         })        
+        .when('/accepted/:id', {
+            templateUrl: 'partials/inventor/view_accepted.html'
+        })
         .otherwise({
             redirectTo: '/'
         })

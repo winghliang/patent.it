@@ -6,6 +6,8 @@ inventionApp.controller('PendingPostsController', function($scope, InventorFacto
 
 	$scope.open_preview_limit = 10;
 
+	$scope.messages = "";
+
 	InventorFactory.get(function(data){
 		$scope.inventor = data;
 
@@ -15,5 +17,9 @@ inventionApp.controller('PendingPostsController', function($scope, InventorFacto
 			}
 		}
 	})
+
+	if (global_messages.length > 0) {
+		$scope.message = global_messages.pop();
+	}
 
 })

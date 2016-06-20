@@ -107,3 +107,7 @@
 	font-weight: bold;
 	color: red;
 }
+
+#about, #contact {
+	font-size: 1.2em;
+}

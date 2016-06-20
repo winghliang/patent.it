@@ -6,6 +6,7 @@ inventionApp.controller('NewPostController', function($scope, InventorFactory){
 
 	InventorFactory.get_tech_areas(function(data){
 		$scope.tech_areas = data;
+		console.log("$scope.tech_areas:", $scope.tech_areas);
 	})
 
 	$scope.add_invention = function(){

@@ -8,7 +8,7 @@
                 <ul class="list-unstyled">
                     <li class="sidenav_active">Summary</li>
                     <li><a href="#/pending_posts">Pending Posts</a></li>
-                    <li><a href="#/">Accepted Posts</a></li>
+                    <li><a href="#/accepted_posts">Accepted Posts</a></li>
                     <li><a href="#/">Completed Posts</a></li>
                     <li><a href="#/new_post">Post New Invention</a></li>
                 </ul>
@@ -48,7 +48,7 @@
                     <div class="panel-body" class="main_post_panel">
                         <p ng-if="accepted_posts.length == 0">No posts with accepted bids.</p>
                         <div class="preview" ng-repeat="post in accepted_posts | orderBy: '-created_date' | limitTo: accepted_preview_limit">
-                            <h4><a href="#/post/{{post._id}}">{{ post.title}}</a></h4>
+                            <h4><a href="#/accepted/{{post._id}}">{{ post.title}}</a></h4>
                             <p>{{post.description}}</p>
                             <p class="italic_time">Created: <time am-time-ago="post.created_date"></p>
                             <hr>
@@ -82,8 +82,7 @@
 
             </div> <!-- End of main summary section -->
 
-
         </div>
-    </div>
+    </div> <!-- end of main container-fluid -->
 
 </div>

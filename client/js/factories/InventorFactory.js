@@ -21,6 +21,7 @@ inventionApp.factory('InventorFactory', function($http, $location){
     factory.get_tech_areas = function(callback){
     	$http.get('/tech_areas').success(function(output){
     		tech_areas = output;
+            console.log("retrieved tech areas:", tech_areas)
     		callback(tech_areas);
     	})
     }
@@ -51,6 +52,14 @@ inventionApp.factory('InventorFactory', function($http, $location){
 
     factory.update_post = function(post_id, invention){
         $http.post('/post/update/'+post_id, invention).success(function(output){
+            message = output;
+            global_messages.push(message);
+            $location.path('#/');            
+        })
+    }
+
+    factory.accept_bid = function(bid){
+        $http.post('/accept_bid', bid).success(function(output){
             message = output;
             global_messages.push(message);
             $location.path('#/');            

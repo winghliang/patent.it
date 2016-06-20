@@ -2,22 +2,27 @@ var mongoose = require('mongoose');
 var Inventor = mongoose.model('Inventor');
 var TechArea = mongoose.model('Tech_area');
 var Invention = mongoose.model('Invention');
+var Bid = mongoose.model('Bid');
 
 module.exports = {
 
 	get: function(req, res){
+		console.log("Attempting to get this inventor from session:", req.session.passport.user)
 		Inventor.findOne({_id: req.session.passport.user})
 		.populate( {path: 'posts', populate: {path: 'bids'} })
 		.exec(function(err, inventor){
+			console.log("Inventor found:", inventor)
 			res.json(inventor);
 		})
 	},
 
 	tech_areas: function(req, res){
+		console.log("GETTING TECH AREAS")
 		TechArea.find({}, function(err, results){
 			if (err){
 				console.log('error finding all tech areas');
 			} else {
+				console.log("FOUND THESE TECH AREAS:", results)
 				res.json(results)
 			}
 		})
@@ -48,7 +53,7 @@ module.exports = {
 
 	get_post: function(req, res){
 		Invention.find({ _id: req.params.id })
-		.populate('bids')
+		.populate({path: 'bids', populate: {path: '_prosecutor'} })
 		.exec(function(err, post){
 			res.json(post);
 		})
@@ -67,7 +72,7 @@ module.exports = {
 			if (err){
 				console.log('Error finding user while attempting to delete post.')
 			} else {
-				console.log('in delete!!!')
+				console.log('in delete!!! inventor is:', inventor)
 				for (post in inventor.posts) {
 					if (inventor.posts[post] == req.params.id) {
 						console.log("deleting post id:", (inventor.posts[post]), "= params:", req.params.id, "position:", post);
@@ -99,6 +104,40 @@ module.exports = {
 				console.log('Error deleting post')
 			} else {
 				res.json("Your post has been updated.");
+			}
+		})
+	},
+
+	accept_bid: function(req, res){
+		Bid.findOne( {_id: req.body.bidID}, function(err, bid){
+			if (err){
+				console.log("Error finding bid when attempting to accept")
+			} else {
+				bid.accepted = true;
+				bid.save(function(err, output){
+					if (err) {
+						console.log("Error saving bid")
+					} else {
+						console.log("Successfully saved bid:", bid)
+					}
+				})
+				Invention.findOne( {_id: bid._invention}, function(err, invention){
+					if (err) {
+						console.log("Error finding invention when attempting to update to accepted")
+					} else {
+						invention.accepted = true;
+						invention.save(function(err, output){
+							if (err) {
+								console.log("Error saving bid")
+							} else {
+								console.log("Successfully saved bid:", bid)
+								res.json("The attorney/agent has been notified of the accepted bid.")
+							}
+						})
+					}
+				})
+
+
 			}
 		})
 	}

@@ -1,4 +1,4 @@
-<div ng-controller="ViewPostController">
+<div ng-controller="ViewAcceptedController">
 
     <div class="container-fluid">
         <div class="row">
@@ -6,8 +6,8 @@
             <div class="col-sm-2 side_nav">
                 <ul class="list-unstyled">
                     <li><a href="#/">Summary</a></li>
-                    <li class="sidenav_active"><a href="#/pending_posts">Pending Posts</a></li>
-                    <li><a href="#/accepted_posts">Accepted Posts</a></li>
+                    <li><a href="#/pending_posts">Pending Posts</a></li>
+                    <li class="sidenav_active"><a href="#/accepted_posts">Accepted Posts</a></li>
                     <li><a href="#/">Completed Posts</a></li>
                     <li><a href="#/new_post">Post New Invention</a></li>
                 </ul>
@@ -29,21 +29,12 @@
                             <li ng-repeat="technology in invention.technologies">{{technology}}</li>                                
                         </ul>
 
-                        <div ng-hide="invention.bids.length > 0">
-                            <hr>
-
-                            <form role="form" ng-submit="place_bid()">
-                                <p>Click below to edit post.  Posts are editable until they receive a bid.</p>
-                                <a class="btn btn-success" href="#/edit_post/{{invention._id}}">Edit Post</a>
-                            </form>
-                        </div>
-
                     </div>
                 </div> <!-- End of main panel -->
 
 
-                <div class="panel panel-danger main_panel" ng-show="invention.bids.length > 0">
-                    <div class="panel-heading"><h4>Bids</h4></div>
+                <div class="panel panel-success main_panel">
+                    <div class="panel-heading"><h4>Accepted Bid</h4></div>
                     <div class="panel-body" class="main_post_panel">
 
                         <table class="table table-striped">
@@ -55,10 +46,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="bid in invention.bids">
-                                    <td>$ {{ bid.bid_amount}}</td>
-                                    <td><a href="{{bid._prosecutor.linkedin}}" target="_blank">{{bid._prosecutor.first_name}} {{bid._prosecutor.last_name}}</a></td>
-                                    <td><button class="btn btn-success" ng-click="accept_bid(bid._id)">Accept Bid</button></td>
+                                <tr>
+                                    <td>$ {{ accepted_bid.bid_amount}}</td>
+                                    <td><a href="{{accepted_bid._prosecutor.linkedin}}" target="_blank">{{accepted_bid._prosecutor.first_name}} {{accepted_bid._prosecutor.last_name}}</a></td>
+                                    <td><button class="btn btn-success" ng-click="">Send Message</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -66,10 +57,6 @@
                     </div>
                 </div> <!-- End of bids panel -->
 
-                <div class="text-center">
-                    <p>Change your mind? Click button below to delete (Warning: This action cannot be undone!)</p>
-                    <button class="btn btn-danger" ng-click="delete_post()">Delete Post</button>
-                </div>
 
             </div>
         </div>

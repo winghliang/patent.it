@@ -10,6 +10,7 @@ var ProsecutorSchema = mongoose.Schema({
 	last_name: {type: String, required: true},
 	date_joined: {type: Date, default: new Date},
 	user_type: {type: String, default: 'prosecutor'},
+	linkedin: String,
 	// licensed_states: [{type: String, required: true}],
 	// licensed_since: {type: Number, required: true},
 	// rating: Number,

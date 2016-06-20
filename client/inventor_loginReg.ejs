@@ -19,8 +19,8 @@
         <div class="nav-wrapper container">
         <a id="logo-container" href="/" class="brand-logo">Patent.It</a>
         <ul class="right">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#contact">Contact</a></li>
         </ul>
         </div>
     </nav> <!-- End of nav -->
@@ -32,6 +32,7 @@
 
             <div class="row center section">
                 <h4 class="blue-text text-darken-4">Welcome.  Please login or register.</h4>
+                <p class="red-text">*All fields are required</p>
             </div>
 
             <% if (message.length > 0) { %>
@@ -51,10 +52,12 @@
                         <h5>Login as Inventor</h5>
                         <hr>
                         <form action="/inventorLogin" method="POST">
-                            <label>Email: <input type="email" name="email"></label><br>
-                            <label>Password: <input type="password" name="password"></label>
+                            <label>Email: <input type="email" name="email" value="test@email.com" required></label><br>
+                            <label>Password: <input type="password" name="password" value="password111" required></label>
                             <label><input class="waves-effect waves-light btn" type="submit" value="Login"></label>
                         </form>
+                        <br>
+                        <p class="red-text">*To login for demonstration purposes, just click on the "login" button without modifying the default values above.</p>
                     </div>
                 </div> <!-- end of login -->
 
@@ -64,11 +67,11 @@
                         <h5>Register as Inventor</h5>
                         <hr>
                         <form action="/inventorReg" method="POST">
-                            <label>First Name: <input type="text" name="first_name"></label><br>
-                            <label>Last Name: <input type="text" name="last_name"></label><br>
-                            <label>Email: <input type="email" name="email"></label><br>
-                            <label>Password: <input type="password" name="password"></label><br>
-                            <label>Confirm Password: <input type="password" name="confirm_password"></label>
+                            <label>First Name: <input type="text" name="first_name" required></label><br>
+                            <label>Last Name: <input type="text" name="last_name" required></label><br>
+                            <label>Email: <input type="email" name="email" required></label><br>
+                            <label>Password: <input type="password" name="password" required></label><br>
+                            <label>Confirm Password: <input type="password" name="confirm_password" required></label>
                             <label><input class="waves-effect waves-light btn" type="submit" value="Register"></label>
                         </form>
                     </div>

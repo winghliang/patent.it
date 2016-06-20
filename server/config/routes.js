@@ -89,6 +89,10 @@ module.exports = function(app, passport){
 		inventors.update_post(req, res);
 	})
 
+	app.post('/accept_bid', function(req, res){
+		inventors.accept_bid(req, res);
+	})
+
 	//Prosecutor routes
 	app.get('/inventions', function(req, res){
 		console.log("in prosecutor routes")
@@ -99,11 +103,15 @@ module.exports = function(app, passport){
 		prosecutors.place_bid(req, res);
 	})
 
+	app.get('/bids', function(req, res){
+		console.log("in get prosecutor's bids")
+		prosecutors.get_bids(req, res);
+	})
+
 
 	//Routes used by both inventors and prosecutors
 	app.get('/post/:id', function(req, res){		
 		inventors.get_post(req, res);
 	})
-
 
 }

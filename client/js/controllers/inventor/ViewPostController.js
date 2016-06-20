@@ -11,4 +11,9 @@ inventionApp.controller('ViewPostController', function($scope, InventorFactory, 
 		InventorFactory.delete_post($routeParams.id);
 	}
 
+	$scope.accept_bid = function(bidID){
+		var bid = { bidID: bidID }
+		InventorFactory.accept_bid(bid);
+	}
+
 })

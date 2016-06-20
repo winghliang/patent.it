@@ -6,11 +6,17 @@ var Bid = mongoose.model('Bid');
 module.exports = {
 
 	get_inventions: function(req, res){
-		Invention.find({}, function(err, inventions){
+		Invention.find({})
+		.populate('bids')
+		.exec(function(err, inventions){
 			if (err){
 				console.log('error getting all inventions');
 			} else {
-				res.json(inventions)
+				var result = {
+					prosecutor: req.session.passport.user,
+					inventions: inventions  
+				}
+				res.json(result)
 			}
 		})
 	},
@@ -60,5 +66,13 @@ module.exports = {
 		})
 	},
 
+	get_bids: function(req, res){
+		Bid.find({_prosecutor: req.session.passport.user})
+		.populate( {path: '_invention', populate: {path: '_inventor'} })
+		.exec(function(err, bids){
+			console.log("This prosecutor's bids:", bids);
+			res.json(bids);
+		})
+	}
 
 }

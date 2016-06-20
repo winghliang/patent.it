@@ -42,15 +42,14 @@ module.exports = function(passport) {
         // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
 
-            //need to check if passwords match // 
-
             // find a user whose email is the same as the forms email
-            // we are checking to see if the user trying to login already exists
+            // to check to see if the user trying to login already exists
             Inventor.findOne({ 'email' :  email }, function(err, user) {
                 // if there are any errors, return the error
                 if (err)
                     return done(err);
 
+                //check to see if passwords match
                 if (req.body.password != req.body.confirm_password) {
                     return done(null, false, req.flash('loginMessage', 'Passwords do not match.'));
                 }
@@ -163,6 +162,7 @@ module.exports = function(passport) {
                     newProsecutor.password = newProsecutor.generateHash(password);
                     newProsecutor.first_name = req.body.first_name;
                     newProsecutor.last_name = req.body.last_name;
+                    newProsecutor.linkedin = req.body.linkedin;
 
                     // save the user
                     newProsecutor.save(function(err) {

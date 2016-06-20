@@ -1,0 +1,40 @@
+<div ng-controller="AcceptedBidsController">
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Side Nav -->
+            <div class="col-sm-2 side_nav">
+                <ul class="list-unstyled">
+                    <li><a href="#/">Summary</a></li>
+                    <li class="sidenav_active">Accepted Bids</li>
+                    <li><a href="#/">Pending Bids</a></li>
+                    <li><a href="#/">Open Posts</a></li>
+                    <li><a href="#/">Completed Projects</a></li>
+                </ul>
+            </div> <!-- End of side nav -->
+
+           <!-- Main Summary Section -->
+            <div class="col-sm-10 main_content">
+
+                <!-- accepted bids panel --> 
+                <div class="panel panel-primary main_panel">
+                    <div class="panel-heading text-center"><h4>Accepted Bids</h4></div>
+                    <div class="panel-body" class="main_post_panel">
+                        <p ng-if="accepted_bids.length == 0">No accepted bids.</p>
+                        <div class="preview" ng-repeat="bid in accepted_bids">
+                            <h4><a href="#/accepted_bid/{{bid._invention._id}}">{{ bid._invention.title}}</a></h4>
+                            <p>{{bid._invention.description}}</p>
+                            <div class="text-right">
+                                <a class="btn btn-success" href="#/post/{{post._id}}">Mark As Completed</a>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div> <!-- end of awaiting bids or acceptance of bids panel --> 
+
+        </div>
+    </div>
+
+
+</div>
